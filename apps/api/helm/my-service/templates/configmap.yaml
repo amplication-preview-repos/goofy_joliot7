@@ -1,0 +1,10 @@
+{{- if .Values.variables.configmap -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "my-service.fullname" . }}
+  labels:
+    {{- include "my-service.labels" . | nindent 4 }}
+data:
+  {{- toYaml .Values.variables.configmap | nindent 2}}
+{{- end }}
